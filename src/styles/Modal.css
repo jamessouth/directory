@@ -1,0 +1,90 @@
+.hidden{
+	display: flex;
+	position: absolute;
+	z-index: 44;
+	background-color: #fff;
+	border: 2px solid #dfdfdf;
+	border-radius: 8px;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 90%;
+	padding: 3em 1.5em;
+	transform: translateX(-50%);
+	left: 50%;
+	max-width: 456px;
+}
+.hidden button{
+	position: absolute;
+	background-color: #fff;
+	border: 2px solid transparent;
+	font-size: 30px;
+	width: 15px;
+	cursor: pointer;
+	box-sizing: content-box;
+}
+.hidden button:focus{
+	outline: none;
+	border: 2px solid #4a4a4a;
+}
+.hidden button.close{
+	text-transform: uppercase;
+	right: 4px;
+	top: 4px;
+	font-size: 20px;
+}
+.hidden button.prev{
+	left: 5px;
+	height: 40px;
+	top: 19%;
+}
+.hidden button.next{
+	right: 5px;
+	height: 40px;
+	top: 19%;
+}
+.hidden img{
+	width: 170px;
+	height: 170px;
+	border-radius: 50%;
+	margin-bottom: 1em;
+}
+.hidden div{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+}
+.hidden div.top-part{
+	padding-bottom: 1.5em;
+	border-bottom: 1px solid #dadada;
+}
+.hidden div.bottom-part{
+	padding-top: 1.5em;
+	line-height: 2.1;
+}
+.hidden p{
+	font-weight: 400;
+	font-size: 17px;
+	color: #555;
+}
+.hidden p.name{
+	line-height: 24px;
+	font-weight: 700;
+	margin-bottom: 0.25em;
+	color: #404a51;
+	font-size: 21px;
+}
+.hidden div p.email:hover{
+	text-decoration: underline;
+	color: blue;
+	cursor: pointer;
+}
+.hidden .city,
+.hidden .addy{
+	text-transform: capitalize;
+}
+.hidden .addy{
+  text-align: center;
+}

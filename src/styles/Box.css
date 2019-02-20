@@ -1,0 +1,66 @@
+main > div.shown{
+	background-color: #fff;
+	border: 2px solid #dfdfdf;
+	border-radius: 8px;
+	width: 90%;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-auto-rows: 22px;
+	min-height: 206px;
+	padding: .5em .5em 2px;
+	max-width: 416px;
+	transition: border-color .8s;
+}
+main > div.shown:hover,
+main > div.shown:focus{
+	outline: none;
+	border-color: #4a4a4a;
+}
+main > div.shown:last-of-type{
+	margin-bottom: 0;
+}
+div.shown img{
+	grid-column-end: 2;
+	border-radius: 50%;
+}
+.shown p.name{
+	line-height: 24px;
+	font-weight: 700;
+	grid-column-end: 3;
+	text-align: right;
+	grid-row-end: 2;
+	font-size: 21px;
+	color: #404a51;
+}
+.shown p{
+	font-weight: 400;
+	font-size: 17px;
+	color: #555;
+}
+.shown .user,
+.shown .email,
+.shown .city{
+	grid-column-start: 1;
+	grid-column-end: 3;
+	justify-self: center;
+}
+.shown .user{
+	grid-row-start: 8;
+}
+.shown .email{
+	grid-row-start: 9;
+}
+.shown .city{
+	grid-row-start: 7;
+  text-transform: capitalize;
+}
+.shown p.email:hover{
+	text-decoration: underline;
+	color: blue;
+	cursor: pointer;
+}
+@media screen and (min-width: 1292px){
+	main > div.shown{
+		width: 400px;
+	}
+}
