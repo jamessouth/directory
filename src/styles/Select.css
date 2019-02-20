@@ -1,0 +1,27 @@
+label{
+	color: #4a4a4a;
+	display: block;
+	text-align: center;
+}
+.h1_input div{
+	margin-top: 1em;
+}
+select{
+	border: 2px solid #dfdfdf;
+	border-radius: 4px;
+	color: #4a4a4a;
+	transition: border-color .8s;
+}
+select:focus{
+	outline: none;
+	border-color: #4a4a4a;
+}
+@media screen and (min-width: 1024px){
+	.h1_input div{
+		margin-top: 0;
+	}
+	label{
+		margin-right: 9px;
+		display: inline;
+	}
+}
