@@ -30,7 +30,7 @@ export default class App extends Component{
 
   async getPeople(){
     try{
-      let response = await fetch('https://randomuser.me/api/?results=12&nat=us&inc=name,location,email,login,dob,cell,picture&noinfo');
+      let response = await fetch('https://randomuser.me/api/?results=1&nat=us&inc=name,location,email,login,dob,cell,picture&noinfo');
       let people = await response.json();
       return people.results;
     } catch(err){
@@ -62,7 +62,7 @@ export default class App extends Component{
 			} else if(crit === 'last name'){
 				return a.name.match(/\w*-?'?\w+$/i)[0] > b.name.match(/\w*-?'?\w+$/i)[0] ? 1 : a.name.match(/\w*-?'?\w+$/i)[0] < b.name.match(/\w*-?'?\w+$/i)[0] ? -1 : a.name.match(/^\w+/i)[0] > b.name.match(/^\w+/i)[0] ? 1 : -1;
 			} else {
-				return a.location.city.toLowerCase() > b.location.city.toLowerCase() ? 1 : a.location.city.toLowerCase() < b.location.city.toLowerCase() ? -1 : a.name.match(/^\w+/i)[0] > b.name.match(/^\w+/i)[0] ? 1 : -1;
+				return a.city.toLowerCase() > b.city.toLowerCase() ? 1 : a.city.toLowerCase() < b.city.toLowerCase() ? -1 : a.name.match(/^\w+/i)[0] > b.name.match(/^\w+/i)[0] ? 1 : -1;
 			}
 		});
 		this.setState({employees: emps.map((e,i) => {

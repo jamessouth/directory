@@ -29,7 +29,7 @@ const Main = props => {
         {props.state.employees
           .filter(e => e.isVisible)
           .map((e,i) =>
-          <Box inputInUse={props.state.inputInUse} focusBox={props.state.last || {key:'x'}} modalOpen={!!props.state.modalEmployee} handleModalOpen={props.handleModalOpen} key={e.key} boxkey={e.key} isLoaded={props.state.isLoaded} pic={e.pic} name={e.name} user={e.user} email={e.email} city={e.location.city}></Box>
+          <Box inputInUse={props.state.inputInUse} focusBox={props.state.last || {key:'x'}} modalOpen={!!props.state.modalEmployee} handleModalOpen={props.handleModalOpen} key={e.key} boxkey={e.key} isLoaded={props.state.isLoaded} photo={e.photo} name={e.name} user={e.username} email={e.email} city={e.city}></Box>
         )}
       </main>
     </Fragment>
