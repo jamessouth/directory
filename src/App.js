@@ -26,13 +26,15 @@ export default class App extends Component{
 		mq2.addListener(this.handleModalClose);
   }
 
-
-
   async getPeople(){
     try{
-      let response = await fetch('https://randomuser.me/api/?results=1&nat=us&inc=name,location,email,login,dob,cell,picture&noinfo');
-      let people = await response.json();
-      return people.results;
+      let response = await fetch('https://randomuser.me/api/?results=12&nat=us&inc=name,location,email,login,dob,cell,picture&noinfo');
+      if (response.ok) {
+        response = await response.json();
+      } else {
+        throw new Error('Network problem - response not ok');
+      }
+      return response.results;
     } catch(err){
       console.log('error on fetch: ', err);
     }
@@ -57,9 +59,9 @@ export default class App extends Component{
 
 	sortEmployees = crit => {
 		let emps = this.state.employees.sort((a,b) => {
-			if(crit === 'first name'){
+			if (crit === 'first name') {
 				return a.name.match(/^\w+/i)[0] > b.name.match(/^\w+/i)[0] ? 1 : a.name.match(/^\w+/i)[0] < b.name.match(/^\w+/i)[0] ? -1 : a.name.match(/\w*-?'?\w+$/i)[0] > b.name.match(/\w*-?'?\w+$/i)[0] ? 1 : -1;
-			} else if(crit === 'last name'){
+			} else if (crit === 'last name') {
 				return a.name.match(/\w*-?'?\w+$/i)[0] > b.name.match(/\w*-?'?\w+$/i)[0] ? 1 : a.name.match(/\w*-?'?\w+$/i)[0] < b.name.match(/\w*-?'?\w+$/i)[0] ? -1 : a.name.match(/^\w+/i)[0] > b.name.match(/^\w+/i)[0] ? 1 : -1;
 			} else {
 				return a.city.toLowerCase() > b.city.toLowerCase() ? 1 : a.city.toLowerCase() < b.city.toLowerCase() ? -1 : a.name.match(/^\w+/i)[0] > b.name.match(/^\w+/i)[0] ? 1 : -1;
@@ -73,7 +75,7 @@ export default class App extends Component{
 	}
 
 	handleModalClose = e => {
-		if(e.type === 'keyup' && e.key !== 'Escape'){return;}
+		if (e.type === 'keyup' && e.key !== 'Escape') return;
 		this.setState({
 			last: this.state.modalEmployee,
 			modalEmployee: null
@@ -94,7 +96,7 @@ export default class App extends Component{
 	}
 
 	handleModalOpen = e => {
-		if(e.type === 'keypress' && (e.key !== ' ' && e.key !== 'Enter')){return;}
+		if(e.type === 'keypress' && (e.key !== ' ' && e.key !== 'Enter')) return;
 		const ppl = document.querySelectorAll('.shown').length;
 		let index = e.currentTarget.getAttribute('data-key').match(/\d+$/)[0];
 		this.setState({
