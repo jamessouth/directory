@@ -1,7 +1,7 @@
 import caps from './caps';
 
 export default function getName(person) {
-  return `${person.name.first.trim()
+  const name = `${person.name.first.trim()
     .replace(/([A-zÀ-ÿğŞı]+|\w+[A-zÀ-ÿğŞı]*)\w*$/gi, caps)
     .replace(/jean-/, 'Jean-')
     .replace(/Tomothy|Timmothy/, 'Timothy')
@@ -24,4 +24,5 @@ export default function getName(person) {
       .replace(/jean-/, 'Jean-')
       .replace(/^mccoy/i, 'McCoy')
       .replace(/^mck\w+/i, 'McKinney')}`;
+  return { ...person, name };
 }
