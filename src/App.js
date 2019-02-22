@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Main from './components/Main';
 import processPeople from './util/processPeople';
 
-
 export default class App extends Component{
 
   state = {
