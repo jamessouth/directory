@@ -1,4 +1,6 @@
-react refactor of project-10
+A React refactor (Reactor?? 🤔) of [Project-10](https://github.com/jamessouth/Project-10)
+
+----------------------------------------------------------------------------------------------------------------------------------------
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
