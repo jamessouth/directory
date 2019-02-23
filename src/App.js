@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Main from './components/Main';
 import processPeople from './util/processPeople';
+import getPeople from './util/getPeople';
 
 export default class App extends Component{
 
@@ -15,7 +16,7 @@ export default class App extends Component{
   }
 
   componentDidMount(){
-    this.getPeople()
+    getPeople('https://randomuser.me/api/?results=12&nat=us&inc=name,location,email,login,dob,cell,picture&noinfo')
 			.then(processPeople)
 			.then(res => this.setState({employees: res, isLoaded: true}),
 			error => this.setState({isLoaded: true, error}));
@@ -23,20 +24,6 @@ export default class App extends Component{
 		let mq2 = window.matchMedia('(min-width: 1024px)');
 		mq.addListener(this.handleModalClose);
 		mq2.addListener(this.handleModalClose);
-  }
-
-  async getPeople(){
-    try{
-      let response = await fetch('https://randomuser.me/api/?results=12&nat=us&inc=name,location,email,login,dob,cell,picture&noinfo');
-      if (response.ok) {
-        response = await response.json();
-      } else {
-        throw new Error('Network problem - response not ok');
-      }
-      return response.results;
-    } catch(err){
-      console.log('error on fetch: ', err);
-    }
   }
 
 	navigateEmployees = (dir, beginIndex) => {

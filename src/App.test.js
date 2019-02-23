@@ -9,6 +9,24 @@ import ModalNav from './components/ModalNav';
 import Select from './components/Select';
 import processPeople from './util/processPeople';
 import abbrev from './util/abbrev';
+import getPeople from './util/getPeople';
+
+function mockFetchGood(data) {
+  return jest.fn(() =>
+    Promise.resolve({
+      ok: true,
+      json: () => data
+    })
+  );
+}
+
+function mockFetchBad(data) {
+  return jest.fn(() =>
+    Promise.resolve({
+      ok: false
+    })
+  );
+}
 
 window.matchMedia = jest.fn().mockImplementation(query => {
   return {
@@ -47,6 +65,13 @@ const person = [
     }
   }
 ];
+
+const users = {
+  results: [
+    {name: 'Mark'},
+    {name: 'Paul'}
+  ]
+};
 
 it('renders without crashing - App', () => {
   const div = document.createElement('div');
@@ -111,4 +136,25 @@ it('processes a person', () => {
 
 it('abbreviates long names', () => {
   expect(abbrev('elizabeth')).toBe('e');
+});
+
+it('gets people - ok', async () => {
+  expect.assertions(2);
+  fetch = mockFetchGood(users);
+  const data = await getPeople('fake');
+  expect(data).toEqual([
+    {name: 'Mark'},
+    {name: 'Paul'}
+  ]);
+  expect(fetch).toHaveBeenCalledTimes(1);
+});
+
+it('gets people - error thrown and caught', async () => {
+  expect.assertions(2);
+  fetch = mockFetchBad(users);
+  const spy = jest.spyOn(console, 'log');
+  await getPeople('fake');
+  expect(spy).toHaveBeenNthCalledWith(1, 'error on fetch: ', 'Network problem - response not ok');
+  expect(fetch).toHaveBeenCalledTimes(1);
+  spy.mockRestore();
 });
