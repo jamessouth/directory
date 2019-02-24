@@ -26,7 +26,10 @@ export default class Input extends Component{
 
   render(){
     return(
-      <input onBlur={this.handleBlur} onFocus={this.handleFocus} role="searchbox" ref={input => this.input = input} tabIndex={this.props.modalOpen ? "-1" : "0"} value={this.state.value} onChange={this.handleChange} className="search" id="search" type="search" name="search_box" placeholder="Search"/>
+      <>
+        <label htmlFor="search">search</label>
+        <input onBlur={this.handleBlur} onFocus={this.handleFocus} role="searchbox" ref={input => this.input = input} tabIndex={this.props.modalOpen ? "-1" : "0"} value={this.state.value} onChange={this.handleChange} className="search" id="search" type="search" name="search_box" placeholder="Search"/>
+      </>
     );
   }
 }

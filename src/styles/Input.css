@@ -10,6 +10,10 @@ input{
 	max-width: 416px;
 	transition: border-color .8s;
 }
+label[for="search"]{
+	color: transparent;
+	font-size: 2px;
+}
 input:focus{
 	outline: none;
 	border-color: #4a4a4a;

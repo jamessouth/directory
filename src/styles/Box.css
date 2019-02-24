@@ -1,4 +1,4 @@
-main > div.shown{
+ul > li.shown{
 	background-color: #fff;
 	border: 2px solid #dfdfdf;
 	border-radius: 8px;
@@ -11,15 +11,15 @@ main > div.shown{
 	max-width: 416px;
 	transition: border-color .8s;
 }
-main > div.shown:hover,
-main > div.shown:focus{
+ul > li.shown:hover,
+ul > li.shown:focus{
 	outline: none;
 	border-color: #4a4a4a;
 }
-main > div.shown:last-of-type{
+ul > li.shown:last-of-type{
 	margin-bottom: 0;
 }
-div.shown img{
+li.shown img{
 	grid-column-end: 2;
 	border-radius: 50%;
 }
@@ -60,7 +60,7 @@ div.shown img{
 	cursor: pointer;
 }
 @media screen and (min-width: 1292px){
-	main > div.shown{
+	ul > li.shown{
 		width: 400px;
 	}
 }
