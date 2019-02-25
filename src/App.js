@@ -12,6 +12,7 @@ export default class App extends Component{
 		singlet: false,
 		last: null,
 		inputInUse: true,
+    newSW: false,
 		error: null
   }
 
@@ -113,9 +114,15 @@ export default class App extends Component{
 		}, 500);
 	}
 
+  handleNewSW = e => {
+    this.setState({
+      newSW: true
+    });
+  }
+
   render(){
     return (
-        		<Main handleSort={this.sortEmployees} handleModalPrev={this.handleModalPrev} handleInputFocus={this.handleInputFocus} handleInputBlur={this.handleInputBlur} handleModalNext={this.handleModalNext} handleModalClose={this.handleModalClose} handleModalOpen={this.handleModalOpen} filter={this.filterEmployees} state={this.state}></Main>
+        		<Main handleSort={this.sortEmployees} handleModalPrev={this.handleModalPrev} handleInputFocus={this.handleInputFocus} handleInputBlur={this.handleInputBlur} handleNewSW={this.handleNewSW} handleModalNext={this.handleModalNext} handleModalClose={this.handleModalClose} handleModalOpen={this.handleModalOpen} filter={this.filterEmployees} state={this.state}></Main>
     );
   }
 }

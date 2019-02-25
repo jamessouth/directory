@@ -3,6 +3,7 @@ import Box from './Box';
 import Input from './Input';
 import Select from './Select';
 import Modal from './Modal';
+import SWNotify from './SWNotify';
 import '../styles/Main.css';
 
 const Fragment = React.Fragment;
@@ -10,6 +11,10 @@ const Fragment = React.Fragment;
 const Main = props => {
 
   document.body.style.overflowY = !props.state ? 'visible' : !!props.state.modalEmployee ? 'hidden' : 'visible';
+
+  document.addEventListener('swUpdated', props.handleNewSW);
+
+  setTimeout(props.handleNewSW, 4565);
 
   return (
     <Fragment>
@@ -20,6 +25,18 @@ const Main = props => {
           </Modal>
         </Fragment>
       }
+      {props.state && props.state.newSW &&
+        <Fragment>
+          <div className="overlay" />
+          <Modal handleModalPrev={props.handleModalPrev} handleModalNext={props.handleModalNext} handleModalClose={props.handleModalClose} emp={props.state.modalEmployee} sing={props.state.singlet}>
+          </Modal>
+        </Fragment>
+      }
+
+
+
+
+
       <div className="h1_input" aria-hidden={props.state && !!props.state.modalEmployee}>
         <h1>awesome startup employee directory</h1>
         <Input handleInputBlur={props.handleInputBlur} handleInputFocus={props.handleInputFocus} modalOpen={props.state && !!props.state.modalEmployee} filter={props.filter}></Input>
