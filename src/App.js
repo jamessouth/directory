@@ -12,7 +12,7 @@ export default class App extends Component{
 		singlet: false,
 		last: null,
 		inputInUse: true,
-    newSW: false,
+    newSW: null,
 		error: null
   }
 
@@ -116,13 +116,23 @@ export default class App extends Component{
 
   handleNewSW = e => {
     this.setState({
-      newSW: true
+      newSW: e.detail
+    });
+  }
+
+  handleSWReload = e => {
+    if (!this.state.newSW.waiting) {
+      return;
+    }
+    this.state.newSW.waiting.postMessage('skipWaiting');
+    this.setState({
+      newSW: null
     });
   }
 
   render(){
     return (
-        		<Main handleSort={this.sortEmployees} handleModalPrev={this.handleModalPrev} handleInputFocus={this.handleInputFocus} handleInputBlur={this.handleInputBlur} handleNewSW={this.handleNewSW} handleModalNext={this.handleModalNext} handleModalClose={this.handleModalClose} handleModalOpen={this.handleModalOpen} filter={this.filterEmployees} state={this.state}></Main>
+        		<Main handleSort={this.sortEmployees} handleModalPrev={this.handleModalPrev} handleInputFocus={this.handleInputFocus} handleInputBlur={this.handleInputBlur} handleNewSW={this.handleNewSW} handleSWReload={this.handleSWReload} handleModalNext={this.handleModalNext} handleModalClose={this.handleModalClose} handleModalOpen={this.handleModalOpen} filter={this.filterEmployees} state={this.state}></Main>
     );
   }
 }

@@ -14,8 +14,6 @@ const Main = props => {
 
   document.addEventListener('swUpdated', props.handleNewSW);
 
-  setTimeout(props.handleNewSW, 4565);
-
   return (
     <Fragment>
       {props.state && !!props.state.modalEmployee &&
@@ -25,18 +23,9 @@ const Main = props => {
           </Modal>
         </Fragment>
       }
-      {props.state && props.state.newSW &&
-        <Fragment>
-          <div className="overlay" />
-          <Modal handleModalPrev={props.handleModalPrev} handleModalNext={props.handleModalNext} handleModalClose={props.handleModalClose} emp={props.state.modalEmployee} sing={props.state.singlet}>
-          </Modal>
-        </Fragment>
+      {props.state && !!props.state.newSW &&
+        <SWNotify state={props.state} handleSWReload={props.handleSWReload}></SWNotify>
       }
-
-
-
-
-
       <div className="h1_input" aria-hidden={props.state && !!props.state.modalEmployee}>
         <h1>awesome startup employee directory</h1>
         <Input handleInputBlur={props.handleInputBlur} handleInputFocus={props.handleInputFocus} modalOpen={props.state && !!props.state.modalEmployee} filter={props.filter}></Input>

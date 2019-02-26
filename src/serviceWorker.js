@@ -59,16 +59,12 @@ function registerValidSW(swUrl, config) {
     .register(swUrl)
     .then(registration => {
       registration.onupdatefound = () => {
-
-
         let refreshing;
         navigator.serviceWorker.addEventListener('controllerchange', () => {
           if (refreshing) return;
           window.location.reload();
           refreshing = true;
         });
-
-
         const installingWorker = registration.installing;
         if (installingWorker == null) {
           return;
@@ -83,13 +79,8 @@ function registerValidSW(swUrl, config) {
                 'New content is available and will be used when all ' +
                   'tabs for this page are closed. See http://bit.ly/CRA-PWA.'
               );
-
-
               const UpdatedEvent = new CustomEvent('swUpdated', { detail: registration });
               document.dispatchEvent(UpdatedEvent);
-
-
-
               // Execute callback
               if (config && config.onUpdate) {
                 config.onUpdate(registration);

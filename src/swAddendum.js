@@ -1,25 +1,13 @@
-
-
-
-
-
-
-
-
-
 const prefix = 'employee-directory';
-const version = 'v1';
+const version = 'v8';
 const FALLBACK_IMAGE_URL = '/face.69232788.jpg';
-
 
 workbox.precaching.precache([
   '/face.69232788.jpg',
 ]);
 workbox.precaching.addRoute();
 
-
 workbox.core.setCacheNameDetails({ prefix });
-
 
 self.addEventListener('message', (e) => {
   if (!e.data) return;

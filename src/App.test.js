@@ -7,6 +7,7 @@ import Main from './components/Main';
 import Modal from './components/Modal';
 import ModalNav from './components/ModalNav';
 import Select from './components/Select';
+import SWNotify from './components/SWNotify';
 import processPeople from './util/processPeople';
 import abbrev from './util/abbrev';
 import getPeople from './util/getPeople';
@@ -112,6 +113,12 @@ it('renders without crashing - ModalNav', () => {
 it('renders without crashing - Select', () => {
   const div = document.createElement('div');
   ReactDOM.render(<Select />, div);
+  ReactDOM.unmountComponentAtNode(div);
+});
+
+it('renders without crashing - SWNotify', () => {
+  const div = document.createElement('div');
+  ReactDOM.render(<SWNotify />, div);
   ReactDOM.unmountComponentAtNode(div);
 });
 
