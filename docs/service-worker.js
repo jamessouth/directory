@@ -33,11 +33,11 @@ workbox.routing.registerNavigationRoute("./index.html", {
   blacklist: [/^\/_/,/\/[^\/]+\.[^\/]+$/],
 });
 const prefix = 'employee-directory';
-const version = 'v9';
-const FALLBACK_IMAGE_URL = '/face.69232788.jpg';
+const version = 'v1';
+const FALLBACK_IMAGE_URL = './face.69232788.jpg';
 
 workbox.precaching.precache([
-  '/face.69232788.jpg',
+  './face.69232788.jpg',
 ]);
 workbox.precaching.addRoute();
 
