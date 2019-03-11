@@ -35,12 +35,12 @@
 	font-size: 20px;
 }
 .hidden button.prev{
-	left: 7px;
+	left: 20px;
 	height: 40px;
 	top: 19%;
 }
 .hidden button.next{
-	right: 7px;
+	right: 20px;
 	height: 40px;
 	top: 19%;
 }

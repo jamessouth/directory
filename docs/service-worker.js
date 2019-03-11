@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "./precache-manifest.2d064a86fd4ad75444b9ba7c43bc0c64.js"
+  "./precache-manifest.90d407a8bea5158b66ca447a4fca9168.js"
 );
 
 workbox.clientsClaim();
@@ -33,7 +33,7 @@ workbox.routing.registerNavigationRoute("./index.html", {
   blacklist: [/^\/_/,/\/[^\/]+\.[^\/]+$/],
 });
 const prefix = 'employee-directory';
-const version = 'v3';
+const version = 'v4';
 const FALLBACK_IMAGE_URL = './face.69232788.jpg';
 
 workbox.precaching.precache([

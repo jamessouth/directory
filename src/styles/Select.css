@@ -20,8 +20,4 @@ select:focus{
 	.h1_input div{
 		margin-top: 0;
 	}
-	label{
-		margin-right: 9px;
-		display: inline;
-	}
 }
