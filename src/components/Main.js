@@ -7,7 +7,6 @@ import SWNotify from './SWNotify';
 import '../styles/Main.css';
 
 const Fragment = React.Fragment;
-
 const Main = props => {
 
   document.body.style.overflowY = !props.state ? 'visible' : !!props.state.modalEmployee ? 'hidden' : 'visible';

@@ -4,11 +4,8 @@ import loading from '../loading.png';
 import '../styles/Modal.css';
 
 const Modal = props => {
-
-  let styles = {top: window.scrollY + 20};
-
   return (
-    <div aria-live="polite" style={styles} onKeyUp={props.handleModalClose} className="hidden">
+    <div aria-live="polite" onKeyUp={props.handleModalClose} className="hidden">
       <button autoFocus aria-label="close" onClick={props.handleModalClose} className="close">x</button>
       <ModalNav handleModalPrev={props.handleModalPrev} handleModalNext={props.handleModalNext} sing={props.sing}></ModalNav>
       <img src={props.emp ? props.emp.photo : loading} alt="employee" />

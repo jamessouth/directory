@@ -1,6 +1,7 @@
 .hidden{
+	top: 20px;
 	display: flex;
-	position: absolute;
+	position: fixed;
 	z-index: 44;
 	background-color: #fff;
 	border: 2px solid #dfdfdf;
@@ -34,12 +35,12 @@
 	font-size: 20px;
 }
 .hidden button.prev{
-	left: 5px;
+	left: 7px;
 	height: 40px;
 	top: 19%;
 }
 .hidden button.next{
-	right: 5px;
+	right: 7px;
 	height: 40px;
 	top: 19%;
 }
