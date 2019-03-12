@@ -1,4 +1,4 @@
-A React refactor (Reactor?? 🤔) of [Project-10](https://github.com/jamessouth/Project-10)
+PWA React refactor (Reactor?? 🤔) of [Project-10](https://github.com/jamessouth/Project-10)
 
 ----------------------------------------------------------------------------------------------------------------------------------------
 
