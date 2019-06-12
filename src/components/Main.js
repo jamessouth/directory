@@ -6,7 +6,6 @@ import Modal from './Modal';
 import SWNotify from './SWNotify';
 import '../styles/Main.css';
 
-const Fragment = React.Fragment;
 const Main = props => {
 
   document.body.style.overflowY = !props.state ? 'visible' : !!props.state.modalEmployee ? 'hidden' : 'visible';
@@ -14,13 +13,13 @@ const Main = props => {
   document.addEventListener('swUpdated', props.handleNewSW);
 
   return (
-    <Fragment>
+    <>
       {props.state && !!props.state.modalEmployee &&
-        <Fragment>
+        <>
           <div className="overlay" />
           <Modal handleModalPrev={props.handleModalPrev} handleModalNext={props.handleModalNext} handleModalClose={props.handleModalClose} emp={props.state.modalEmployee} sing={props.state.singlet}>
           </Modal>
-        </Fragment>
+        </>
       }
       {props.state && !!props.state.newSW &&
         <SWNotify state={props.state} handleSWReload={props.handleSWReload}></SWNotify>
@@ -37,7 +36,7 @@ const Main = props => {
           <Box inputInUse={props.state.inputInUse} focusBox={props.state.last || {key:'x'}} modalOpen={!!props.state.modalEmployee} handleModalOpen={props.handleModalOpen} key={e.key} boxkey={e.key} isLoaded={props.state.isLoaded} photo={e.photo} name={e.name} user={e.username} email={e.email} city={e.city}></Box>
         )}
       </ul>
-    </Fragment>
+    </>
   );
 }
 
