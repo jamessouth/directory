@@ -1,4 +1,4 @@
-#employee directory
+# employee directory
 
 Responsive, accessible, and installable PWA built with React (create-react-app)
 
