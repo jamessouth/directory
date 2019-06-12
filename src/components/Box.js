@@ -1,25 +1,22 @@
-import React, { Component } from 'react';
+import React, { useEffect, useRef } from 'react';
 import loading from '../loading.png';
 import '../styles/Box.css';
 
-export default class Box extends Component{
-
-  shouldComponentUpdate(p){
-    if(!p.modalOpen && !p.inputInUse && this.li.getAttribute('data-key') === p.focusBox.key){
-      this.li.focus();
+export default function Box(props) {
+  const boxLi = useRef(null);
+  useEffect(() => {
+    if(!props.modalOpen && !props.inputInUse && boxLi.current.getAttribute('data-key') === props.focusBox.key){
+      boxLi.current.focus();
     }
-    return true;
-  }
+  });
 
-  render(){
-    return (
-      <li ref={li => this.li = li} onKeyPress={this.props.handleModalOpen} onClick={this.props.handleModalOpen} data-key={this.props.boxkey} className="shown" tabIndex={this.props.modalOpen ? "-1" : "0"}>
-        <img src={this.props.isLoaded ? this.props.photo : loading} alt="employee"/>
-        <p className="name">{this.props.isLoaded ? this.props.name : ''}</p>
-        <p className="user">{this.props.isLoaded ? this.props.user : ''}</p>
-        <p className="email">{this.props.isLoaded ? this.props.email : ''}</p>
-        <p className="city">{this.props.isLoaded ? `${this.props.city}, USA` : ''}</p>
-      </li>
-    );
-  }
+  return (
+    <li ref={boxLi} onKeyPress={props.handleModalOpen} onClick={props.handleModalOpen} data-key={props.boxkey} className="shown" tabIndex={props.modalOpen ? "-1" : "0"}>
+      <img src={props.isLoaded ? props.photo : loading} alt="employee"/>
+      <p className="name">{props.isLoaded ? props.name : ''}</p>
+      <p className="user">{props.isLoaded ? props.user : ''}</p>
+      <p className="email">{props.isLoaded ? props.email : ''}</p>
+      <p className="city">{props.isLoaded ? `${props.city}, USA` : ''}</p>
+    </li>
+  );
 }
