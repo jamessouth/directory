@@ -1,27 +1,39 @@
 import React from 'react';
-import ModalNav from './ModalNav';
-import loading from '../loading.png';
+import ModalTop from './ModalTop';
+import ModalMiddle from './ModalMiddle';
+import ModalBottom from './ModalBottom';
 import '../styles/Modal.css';
 
-const Modal = props => {
+export default function Modal(props) {
   return (
     <div aria-live="polite" onKeyUp={props.handleModalClose} className="hidden">
-      <button autoFocus aria-label="close" onClick={props.handleModalClose} className="close">x</button>
-      <ModalNav handleModalPrev={props.handleModalPrev} handleModalNext={props.handleModalNext} sing={props.sing}></ModalNav>
-      <img src={props.emp ? props.emp.photo : loading} alt="employee" />
-      <div className="top-part">
-        <p className="name">{props.emp ? props.emp.name : ''}</p>
-        <p className="user">{props.emp ? props.emp.username : ''}</p>
-        <p className="email">{props.emp ? props.emp.email : ''}</p>
-        <p className="city">{props.emp ? props.emp.city : ''}</p>
-      </div>
-      <div className="bottom-part">
-        <p className="phone">{props.emp ? props.emp.cell : ''}</p>
-        <p className="addy">{props.emp ? `${props.emp.street}, ${props.emp.city}, ${props.emp.state}, USA ${props.emp.postcode}` : ''}</p>
-        <p className="bday">{props.emp ? `Birthday: ${props.emp.month}/${props.emp.day}/${props.emp.year}` : ''}</p>
-      </div>
+
+      <ModalTop
+        handleModalPrev={props.handleModalPrev}
+        handleModalNext={props.handleModalNext}
+        handleModalClose={props.handleModalClose}
+        photo={props.emp.photo}
+        sing={props.sing}
+      />
+
+      <ModalMiddle
+        name={props.emp.name}
+        username={props.emp.username}
+        email={props.emp.email}
+        city={props.emp.city}
+      />
+
+      <ModalBottom
+        cell={props.emp.cell}
+        street={props.emp.street}
+        city={props.emp.city}
+        state={props.emp.state}
+        postcode={props.emp.postcode}
+        month={props.emp.month}
+        day={props.emp.day}
+        year={props.emp.year}
+      />
+      
     </div>
   );
 }
-
-export default Modal;
