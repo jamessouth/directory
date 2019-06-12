@@ -1,35 +1,21 @@
-import React, { Component } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import '../styles/Input.css';
 
-export default class Input extends Component{
+export default function Input(props) {
+  const inPut = useRef(null);
+  let [inputText, updateInputText] = useState('');
 
-  state = {
-    value: ''
+  useEffect(() => inPut.current.focus(), [props.inputInUse]);
+
+  const handleChange = e => {
+    updateInputText(e.target.value);
+    props.filter(e.target.value);
   }
 
-  componentDidMount(){
-    this.input.focus();
-  }
-
-  handleChange = e => {
-    this.props.filter(e.target.value);
-    this.setState({value: e.target.value});
-  }
-
-  handleFocus = e => {
-    this.props.handleInputFocus(e);
-  }
-
-  handleBlur = e => {
-    this.props.handleInputBlur(e);
-  }
-
-  render(){
-    return(
-      <>
-        <label htmlFor="search">search</label>
-        <input onBlur={this.handleBlur} onFocus={this.handleFocus} role="searchbox" ref={input => this.input = input} tabIndex={this.props.modalOpen ? "-1" : "0"} value={this.state.value} onChange={this.handleChange} className="search" id="search" type="search" name="search_box" placeholder="Search"/>
-      </>
-    );
-  }
+  return(
+    <>
+      <label htmlFor="search">search</label>
+      <input ref={inPut} onBlur={props.handleInputBlur} onFocus={props.handleInputFocus} role="searchbox" tabIndex={props.modalOpen ? "-1" : "0"} value={inputText} onChange={handleChange} className="search" id="search" type="search" name="search_box" placeholder="Search"/>
+    </>
+  );
 }
