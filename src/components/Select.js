@@ -1,28 +1,20 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
+import handleChange from '../util/handleChange';
 import '../styles/Select.css';
 
-export default class Select extends Component{
+export default function Select(props) {
+  let [selectValue, updateSelectValue] = useState('Select...');
 
-  state = {
-    value: 'Select...'
-  }
+  return(
+    <div>
+      <label htmlFor="sort">Sort by:</label>
+      <select tabIndex={props.modalOpen ? "-1" : "0"} value={selectValue} onChange={handleChange(updateSelectValue, props.handleSort)} id="sort">
+        <option hidden>Select...</option>
+        <option>first name</option>
+        <option>last name</option>
+        <option>city</option>
+      </select>
+    </div>
+  );
 
-  handleChange = e => {
-    this.props.handleSort(e.target.value);
-    this.setState({value: e.target.value});
-  }
-
-  render(){
-    return(
-      <div>
-        <label htmlFor="sort">Sort by:</label>
-        <select tabIndex={this.props.modalOpen ? "-1" : "0"} value={this.state.value} onChange={this.handleChange} id="sort">
-          <option hidden>Select...</option>
-          <option>first name</option>
-          <option>last name</option>
-          <option>city</option>
-        </select>
-      </div>
-    );
-  }
 }
