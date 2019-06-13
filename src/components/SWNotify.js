@@ -1,7 +1,7 @@
 import React from 'react';
 import '../styles/SWNotify.css';
 
-const Modal = props => {
+export default function SWNotify(props) {
   return (
     <div id="sw" aria-live="polite">
       New content!
@@ -9,5 +9,3 @@ const Modal = props => {
     </div>
   );
 }
-
-export default Modal;
