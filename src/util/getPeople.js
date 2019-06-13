@@ -4,7 +4,9 @@ export default async function getPeople(url) {
     if (!response.ok) throw new Error('Network problem - response not ok');
     response = await response.json();
     return response.results;
-  } catch(err){
-    console.log('error on fetch: ', err.message);
+  } catch (err) {
+    err.message = 'tytyttytyty';
+    return err;
+    // console.log('error on fetch: ', err.message);
   }
 }

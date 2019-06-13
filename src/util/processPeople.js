@@ -12,7 +12,7 @@ import getCell from './getCell';
 import getEmail from './getEmail';
 import cleanup from './cleanup';
 
-export default function processPeople(people){
+export default function processPeople(people) {
   return people
     .map((person, i) => {
       const key = `${person.login.salt}_${i}`;
