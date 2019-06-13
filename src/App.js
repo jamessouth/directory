@@ -13,25 +13,30 @@ export default function App() {
   let [last, updateLast] = useState(null);
   let [inputInUse, updateInputInUse] = useState(true);
   let [newSW, updateNewSW] = useState(null);
+  const endpoint = 'https://randomuser.me/api/?results=12&nat=us&inc=name,location,email,login,dob,cell,picture&noinfo';
 
-  useEffect(async () => {
-    try {
-      const resp = await getPeople('https://randomuser.me/api/?results=12&nat=us&inc=name,location,email,login,dob,cell,picture&noinfo');
-      const data = processPeople(resp);
-      updateEmployees(data);
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const resp = await getPeople(endpoint);
+        const data = processPeople(resp);
+        updateEmployees(data);
+      } catch (err) {
+        console.log(err);
+      } finally {
+        updateIsLoaded(true);
 
-    } catch (err) {
-      console.log(err);
-    } finally {
-      updateIsLoaded(true);
-      const mq = window.matchMedia('(min-width: 768px)');
-      const mq2 = window.matchMedia('(min-width: 1024px)');
-      mq.addListener(handleModalClose);
-      mq2.addListener(handleModalClose);
+      }
     }
+    fetchData();
+  }, [endpoint]);
 
-
-  });
+  // useEffect(() => {
+  //   const mq = window.matchMedia('(min-width: 768px)');
+  //   const mq2 = window.matchMedia('(min-width: 1024px)');
+  //   mq.addListener(handleModalClose);
+  //   mq2.addListener(handleModalClose);
+  // }, [handleModalClose]);
 
 
   function sortEmployees(crit) {
@@ -111,8 +116,25 @@ export default function App() {
     updateNewSW(null);
   }
 
-
   return (
-          <Main handleSort={sortEmployees} handleModalPrev={handleModalPrev} handleInputFocus={handleInputFocus} handleInputBlur={handleInputBlur} handleNewSW={handleNewSW} handleSWReload={handleSWReload} handleModalNext={handleModalNext} handleModalClose={handleModalClose} handleModalOpen={handleModalOpen} filter={filterEmployees} state={state}></Main>
+    <Main
+      handleSort={sortEmployees}
+      handleModalPrev={handleModalPrev}
+      handleInputFocus={handleInputFocus}
+      handleInputBlur={handleInputBlur}
+      handleNewSW={handleNewSW}
+      handleSWReload={handleSWReload}
+      handleModalNext={handleModalNext}
+      handleModalClose={handleModalClose}
+      handleModalOpen={handleModalOpen}
+      filter={filterEmployees}
+      employees={employees}
+      isLoaded={isLoaded}
+      modalEmployee={modalEmployee}
+      singlet={singlet}
+      last={last}
+      inputInUse={inputInUse}
+      newSW={newSW}
+    />
   );
 }
