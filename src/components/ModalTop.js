@@ -1,6 +1,5 @@
 import React from 'react';
 import ModalNav from './ModalNav';
-import loading from '../loading.png';
 
 export default function ModalTop(props) {
   return (
@@ -9,7 +8,7 @@ export default function ModalTop(props) {
       {
         !props.sing && <ModalNav handleModalPrev={props.handleModalPrev} handleModalNext={props.handleModalNext}></ModalNav>
       }
-      <img src={props.photo || loading} alt="employee" />
+      <img src={props.photo} alt="employee" />
     </>
   );
 }
