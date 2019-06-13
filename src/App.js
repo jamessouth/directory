@@ -84,7 +84,7 @@ export default class App extends Component{
 
 	handleModalOpen = e => {
 		if(e.type === 'keypress' && (e.key !== ' ' && e.key !== 'Enter')) return;
-		const ppl = document.querySelectorAll('.shown').length;
+		const ppl = document.querySelectorAll('li').length;
 		let index = e.currentTarget.getAttribute('data-key').match(/\d+$/)[0];
 		this.setState({
 			modalEmployee: this.state.employees[index],

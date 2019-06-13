@@ -15,7 +15,6 @@ export default function Main(props) {
 
   return (
     <>
-
       {
         props.state && !!props.state.modalEmployee &&
         <>
@@ -24,26 +23,24 @@ export default function Main(props) {
           </Modal>
         </>
       }
-
       {
         props.state && !!props.state.newSW &&
         <SWNotify state={props.state} handleSWReload={props.handleSWReload}></SWNotify>
       }
-
       <div className="h1_input" aria-hidden={props.state && !!props.state.modalEmployee}>
         <h1>awesome startup employee directory</h1>
         <Input handleInputBlur={props.handleInputBlur} handleInputFocus={props.handleInputFocus} modalOpen={props.state && !!props.state.modalEmployee} filter={props.filter}></Input>
         <Select modalOpen={props.state && !!props.state.modalEmployee} handleSort={props.handleSort}></Select>
       </div>
-
-      <ul aria-hidden={props.state && !!props.state.modalEmployee}>
-        {props.state && props.state.employees
+      {
+        props.state.isLoaded && <ul aria-hidden={props.state && !!props.state.modalEmployee}>
+        {props.state.employees
           .filter(e => e.isVisible)
           .map((e, i) =>
-          <Box inputInUse={props.state.inputInUse} focusBox={props.state.last || {key:'x'}} modalOpen={!!props.state.modalEmployee} handleModalOpen={props.handleModalOpen} key={e.key} boxkey={e.key} isLoaded={props.state.isLoaded} photo={e.photo} name={e.name} user={e.username} email={e.email} city={e.city}></Box>
+          <Box inputInUse={props.state.inputInUse} focusBox={props.state.last || {key:'x'}} modalOpen={!!props.state.modalEmployee} handleModalOpen={props.handleModalOpen} key={e.key} boxkey={e.key} photo={e.photo} name={e.name} user={e.username} email={e.email} city={e.city}></Box>
         )}
-      </ul>
-
+        </ul>
+      }
     </>
   );
 }
