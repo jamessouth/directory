@@ -11,7 +11,7 @@ export default function Input(props) {
   return(
     <>
       <label htmlFor="search">search</label>
-      <input ref={inPut} onBlur={props.handleInputBlur} onFocus={props.handleInputFocus} role="searchbox" tabIndex={props.modalOpen ? "-1" : "0"} value={inputText} onChange={handleChange(updateInputText, props.filter)} className="search" id="search" type="search" name="search_box" placeholder="Search"/>
+      <input ref={inPut} onBlur={props.handleInputBlur} onFocus={props.handleInputFocus} role="searchbox" tabIndex={props.modalOpen ? "-1" : "0"} value={inputText} onChange={handleChange(updateInputText, props.filter)} id="search" type="search" name="search_box" placeholder="Search"/>
     </>
   );
 }

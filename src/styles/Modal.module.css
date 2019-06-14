@@ -57,11 +57,34 @@
 	align-items: center;
 	width: 100%;
 }
-.hidden div.top-part{
+
+
+
+.user,
+.email,
+.city{
+  font-weight: 400;
+  font-size: 17px;
+  color: #555;
+  grid-column-start: 1;
+  grid-column-end: 3;
+  justify-self: center;
+}
+
+.city,
+.addy{
+  text-transform: capitalize;
+}
+
+
+
+
+
+.middle{
 	padding-bottom: 1.5em;
 	border-bottom: 1px solid #dadada;
 }
-.hidden div.bottom-part{
+.bottom{
 	padding-top: 1.5em;
 	line-height: 2.1;
 }
@@ -70,7 +93,7 @@
 	font-size: 17px;
 	color: #555;
 }
-.hidden p.name{
+.name{
 	line-height: 24px;
 	font-weight: 700;
 	margin-bottom: 0.25em;
@@ -82,10 +105,6 @@
 	color: blue;
 	cursor: pointer;
 }
-.hidden .city,
-.hidden .addy{
-	text-transform: capitalize;
-}
-.hidden .addy{
+.addy{
   text-align: center;
 }

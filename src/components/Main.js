@@ -4,7 +4,7 @@ import Input from './Input';
 import Select from './Select';
 import Modal from './Modal';
 import SWNotify from './SWNotify';
-import '../styles/Main.css';
+import styles from '../styles/Main.module.css';
 
 export default function Main(props) {
   useEffect(() => {
@@ -18,7 +18,7 @@ export default function Main(props) {
       {
         props.modalEmployee &&
         <>
-          <div className="overlay" />
+          <div className={styles.overlay} />
           <Modal handleModalPrev={props.handleModalPrev} handleModalNext={props.handleModalNext} handleModalClose={props.handleModalClose} emp={props.modalEmployee} sing={props.singlet}>
           </Modal>
         </>
@@ -28,7 +28,7 @@ export default function Main(props) {
         <SWNotify handleSWReload={props.handleSWReload}/>
       }
       {
-        props.isLoaded && <div className="h1_input" aria-hidden={props && !!props.modalEmployee}>
+        props.isLoaded && <div className={styles.h1_input} aria-hidden={props && !!props.modalEmployee}>
           <h1>awesome startup employee directory</h1>
           <Input handleInputBlur={props.handleInputBlur} handleInputFocus={props.handleInputFocus} modalOpen={props && !!props.modalEmployee} filter={props.filter}/>
           <Select modalOpen={props && !!props.modalEmployee} handleSort={props.handleSort}/>

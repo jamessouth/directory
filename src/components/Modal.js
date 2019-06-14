@@ -2,11 +2,11 @@ import React from 'react';
 import ModalTop from './ModalTop';
 import ModalMiddle from './ModalMiddle';
 import ModalBottom from './ModalBottom';
-import '../styles/Modal.css';
+import styles from '../styles/Modal.module.css';
 
 export default function Modal(props) {
   return (
-    <div aria-live="polite" onKeyUp={props.handleModalClose} className="hidden">
+    <div aria-live="polite" onKeyUp={props.handleModalClose} className={styles.hidden}>
 
       <ModalTop
         handleModalPrev={props.handleModalPrev}
@@ -33,7 +33,7 @@ export default function Modal(props) {
         day={props.emp.day}
         year={props.emp.year}
       />
-      
+
     </div>
   );
 }

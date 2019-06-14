@@ -15,7 +15,7 @@ export default function App() {
   const [inputInUse, setInputInUse] = useState(true);
   const [newSW, setNewSW] = useState(null);
   const [fetchError, setFetchError] = useState(null);
-  const endpoint = 'https://random165165165user.me/api/?results=12&nat=us&inc=name,location,email,login,dob,cell,picture&noinfo';
+  const endpoint = 'https://randomuser.me/api/?results=12&nat=us&inc=name,location,email,login,dob,cell,picture&noinfo';
 
   useEffect(() => {
     async function fetchData() {
@@ -40,7 +40,6 @@ export default function App() {
       setTimeout(() => {
         setLast(null);
       }, 500);
-
     },
     [modalEmployee, setLast, setModalEmployee]
   );
