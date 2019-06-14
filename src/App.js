@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import Main from './components/Main';
 import navigateEmployees from './util/navigateEmployees';
 import processPeople from './util/processPeople';
@@ -31,12 +31,25 @@ export default function App() {
     fetchData();
   }, [endpoint]);
 
-  // useEffect(() => {
-  //   const mq = window.matchMedia('(min-width: 768px)');
-  //   const mq2 = window.matchMedia('(min-width: 1024px)');
-  //   mq.addListener(handleModalClose);
-  //   mq2.addListener(handleModalClose);
-  // }, [handleModalClose]);
+  const handleModalClose = useCallback(
+    (e) => {
+      if (e.type === 'keyup' && e.key !== 'Escape') return;
+      updateLast(modalEmployee);
+      updateModalEmployee(null);
+      setTimeout(() => {
+        updateLast(null);
+      }, 500);
+
+    },
+    [modalEmployee, updateLast, updateModalEmployee]
+  );
+
+  useEffect(() => {
+    const mq = window.matchMedia('(min-width: 768px)');
+    const mq2 = window.matchMedia('(min-width: 1024px)');
+    mq.addListener(handleModalClose);
+    mq2.addListener(handleModalClose);
+  }, [handleModalClose]);
 
 
   function sortEmployees(crit) {
@@ -55,23 +68,14 @@ export default function App() {
       }));
   }
 
-  function handleModalClose(e) {
-    if (e.type === 'keyup' && e.key !== 'Escape') return;
-    updateLast(modalEmployee);
-    updateModalEmployee(null);
-    setTimeout(() => {
-      updateLast(null);
-    }, 500);
-  }
-
   function handleModalNext(e) {
     const index = modalEmployee.key.match(/\d+$/)[0];
-    navigateEmployees(employees, updateEmployees)('next', index);
+    navigateEmployees(employees, updateModalEmployee)('next', index);
   }
 
   function handleModalPrev(e) {
     const index = modalEmployee.key.match(/\d+$/)[0];
-    navigateEmployees(employees, updateEmployees)('prev', index);
+    navigateEmployees(employees, updateModalEmployee)('prev', index);
   }
 
   function handleModalOpen(e) {
