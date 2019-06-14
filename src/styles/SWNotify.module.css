@@ -1,4 +1,4 @@
-div#sw{
+.div{
   border-radius: 6px;
   box-shadow: 6px 6px 16px 3px #4a4a4a;
   display: flex;
@@ -14,7 +14,7 @@ div#sw{
   height: 80px;
   background-color: #fcfcfc;
 }
-div#sw button{
+.btn{
   height: 30px;
   width: 60%;
   background-color: #dfdfdf;
@@ -22,7 +22,7 @@ div#sw button{
   cursor: pointer;
   border-radius: 4px;
 }
-div#sw button:focus {
+.btn:focus {
   outline: none;
   border: 2px solid #4a4a4a;
 }

@@ -1,11 +1,11 @@
 import React from 'react';
-import '../styles/SWNotify.css';
+import styles from '../styles/SWNotify.module.css';
 
 export default function SWNotify(props) {
   return (
-    <div id="sw" aria-live="polite">
+    <div className={styles.div} aria-live="polite">
       New content!
-      <button autoFocus onClick={props.handleSWReload}>Reload</button>
+      <button className={styles.btn} autoFocus onClick={props.handleSWReload}>Reload</button>
     </div>
   );
 }

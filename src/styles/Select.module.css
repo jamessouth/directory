@@ -1,9 +1,9 @@
-label{
+label[for="sort"]{
   color: #4a4a4a;
   display: block;
   text-align: center;
 }
-div{
+.div{
   margin-top: 1em;
 }
 select{
@@ -17,7 +17,7 @@ select:focus{
   border-color: #4a4a4a;
 }
 @media screen and (min-width: 1024px){
-  div{
+  .div{
     margin-top: 0;
   }
 }
