@@ -1,31 +1,32 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import Main from './components/Main';
+import FetchError from './components/FetchError';
 import navigateEmployees from './util/navigateEmployees';
 import processPeople from './util/processPeople';
 import getPeople from './util/getPeople';
 
 export default function App() {
 
-  const [employees, updateEmployees] = useState([]);
-  let [isLoaded, updateIsLoaded] = useState(false);
-  let [modalEmployee, updateModalEmployee] = useState(null);
-  let [singlet, updateSinglet] = useState(false);
-  let [last, updateLast] = useState(null);
-  let [inputInUse, updateInputInUse] = useState(true);
-  let [newSW, updateNewSW] = useState(null);
-  const endpoint = 'https://randomuser.me/api/?results=12&nat=us&inc=name,location,email,login,dob,cell,picture&noinfo';
+  const [employees, setEmployees] = useState([]);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [modalEmployee, setModalEmployee] = useState(null);
+  const [singlet, setSinglet] = useState(false);
+  const [last, setLast] = useState(null);
+  const [inputInUse, setInputInUse] = useState(true);
+  const [newSW, setNewSW] = useState(null);
+  const [fetchError, setFetchError] = useState(null);
+  const endpoint = 'https://random165165165user.me/api/?results=12&nat=us&inc=name,location,email,login,dob,cell,picture&noinfo';
 
   useEffect(() => {
     async function fetchData() {
       try {
         const resp = await getPeople(endpoint);
         const data = processPeople(resp);
-        updateEmployees(data);
+        setEmployees(data);
+        setIsLoaded(true);
       } catch (err) {
         console.log(err);
-      } finally {
-        updateIsLoaded(true);
-
+        setFetchError(err);
       }
     }
     fetchData();
@@ -34,14 +35,14 @@ export default function App() {
   const handleModalClose = useCallback(
     (e) => {
       if (e.type === 'keyup' && e.key !== 'Escape') return;
-      updateLast(modalEmployee);
-      updateModalEmployee(null);
+      setLast(modalEmployee);
+      setModalEmployee(null);
       setTimeout(() => {
-        updateLast(null);
+        setLast(null);
       }, 500);
 
     },
-    [modalEmployee, updateLast, updateModalEmployee]
+    [modalEmployee, setLast, setModalEmployee]
   );
 
   useEffect(() => {
@@ -50,7 +51,6 @@ export default function App() {
     mq.addListener(handleModalClose);
     mq2.addListener(handleModalClose);
   }, [handleModalClose]);
-
 
   function sortEmployees(crit) {
     let emps = employees.sort((a,b) => {
@@ -62,7 +62,7 @@ export default function App() {
         return a.city.toLowerCase() > b.city.toLowerCase() ? 1 : a.city.toLowerCase() < b.city.toLowerCase() ? -1 : a.name.match(/^\w+/i)[0] > b.name.match(/^\w+/i)[0] ? 1 : -1;
       }
     });
-    updateEmployees(emps.map((e,i) => {
+    setEmployees(emps.map((e,i) => {
       e.key = e.key.replace(/\d+$/, i);
       return e;
       }));
@@ -70,24 +70,24 @@ export default function App() {
 
   function handleModalNext(e) {
     const index = modalEmployee.key.match(/\d+$/)[0];
-    navigateEmployees(employees, updateModalEmployee)('next', index);
+    navigateEmployees(employees, setModalEmployee)('next', index);
   }
 
   function handleModalPrev(e) {
     const index = modalEmployee.key.match(/\d+$/)[0];
-    navigateEmployees(employees, updateModalEmployee)('prev', index);
+    navigateEmployees(employees, setModalEmployee)('prev', index);
   }
 
   function handleModalOpen(e) {
     if(e.type === 'keypress' && (e.key !== ' ' && e.key !== 'Enter')) return;
     const ppl = document.querySelectorAll('li').length;
     let index = e.currentTarget.getAttribute('data-key').match(/\d+$/)[0];
-    updateModalEmployee(employees[index]);
-    updateSinglet(ppl === 1 ? true : false);
+    setModalEmployee(employees[index]);
+    setSinglet(ppl === 1 ? true : false);
   }
 
   function filterEmployees(val) {
-    updateEmployees(employees.map(e => {
+    setEmployees(employees.map(e => {
       if(!e.name.toLowerCase().includes(val.toLowerCase())){
         e.isVisible = false;
       } else {
@@ -99,17 +99,17 @@ export default function App() {
   }
 
   function handleInputFocus(e) {
-    updateInputInUse(true);
+    setInputInUse(true);
   }
 
   function handleInputBlur(e) {
     setTimeout(() => {
-      updateInputInUse(false);
+      setInputInUse(false);
     }, 500);
   }
 
   function handleNewSW(e) {
-    updateNewSW(e.detail);
+    setNewSW(e.detail);
   }
 
   function handleSWReload(e) {
@@ -117,28 +117,35 @@ export default function App() {
       return;
     }
     newSW.waiting.postMessage('skipWaiting');
-    updateNewSW(null);
+    setNewSW(null);
   }
 
   return (
-    <Main
-      handleSort={sortEmployees}
-      handleModalPrev={handleModalPrev}
-      handleInputFocus={handleInputFocus}
-      handleInputBlur={handleInputBlur}
-      handleNewSW={handleNewSW}
-      handleSWReload={handleSWReload}
-      handleModalNext={handleModalNext}
-      handleModalClose={handleModalClose}
-      handleModalOpen={handleModalOpen}
-      filter={filterEmployees}
-      employees={employees}
-      isLoaded={isLoaded}
-      modalEmployee={modalEmployee}
-      singlet={singlet}
-      last={last}
-      inputInUse={inputInUse}
-      newSW={newSW}
-    />
+    <>
+      {
+        fetchError && <FetchError message={fetchError.message}/>
+      }
+      {
+        !fetchError && <Main
+          handleSort={sortEmployees}
+          handleModalPrev={handleModalPrev}
+          handleInputFocus={handleInputFocus}
+          handleInputBlur={handleInputBlur}
+          handleNewSW={handleNewSW}
+          handleSWReload={handleSWReload}
+          handleModalNext={handleModalNext}
+          handleModalClose={handleModalClose}
+          handleModalOpen={handleModalOpen}
+          filter={filterEmployees}
+          employees={employees}
+          isLoaded={isLoaded}
+          modalEmployee={modalEmployee}
+          singlet={singlet}
+          last={last}
+          inputInUse={inputInUse}
+          newSW={newSW}
+        />
+      }
+    </>
   );
 }

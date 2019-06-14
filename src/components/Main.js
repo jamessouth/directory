@@ -27,11 +27,13 @@ export default function Main(props) {
         props.newSW &&
         <SWNotify handleSWReload={props.handleSWReload}/>
       }
-      <div className="h1_input" aria-hidden={props && !!props.modalEmployee}>
-        <h1>awesome startup employee directory</h1>
-        <Input handleInputBlur={props.handleInputBlur} handleInputFocus={props.handleInputFocus} modalOpen={props && !!props.modalEmployee} filter={props.filter}/>
-        <Select modalOpen={props && !!props.modalEmployee} handleSort={props.handleSort}/>
-      </div>
+      {
+        props.isLoaded && <div className="h1_input" aria-hidden={props && !!props.modalEmployee}>
+          <h1>awesome startup employee directory</h1>
+          <Input handleInputBlur={props.handleInputBlur} handleInputFocus={props.handleInputFocus} modalOpen={props && !!props.modalEmployee} filter={props.filter}/>
+          <Select modalOpen={props && !!props.modalEmployee} handleSort={props.handleSort}/>
+        </div>
+      }
       {
         props.isLoaded && <ul aria-hidden={props && !!props.modalEmployee}>
         {props.employees

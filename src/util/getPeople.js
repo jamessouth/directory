@@ -5,8 +5,6 @@ export default async function getPeople(url) {
     response = await response.json();
     return response.results;
   } catch (err) {
-    err.message = 'tytyttytyty';
-    return err;
-    // console.log('error on fetch: ', err.message);
+    throw err;
   }
 }
