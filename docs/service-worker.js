@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "./precache-manifest.8859f1a83e1eeca60674a288d1b3699d.js"
+  "./precache-manifest.b8cab2c44578075a312442c3a6c1db0f.js"
 );
 
 self.addEventListener('message', (event) => {
@@ -38,7 +38,7 @@ workbox.routing.registerNavigationRoute(workbox.precaching.getCacheKeyForURL("./
   blacklist: [/^\/_/,/\/[^\/]+\.[^\/]+$/],
 });
 const prefix = 'employee-directory';
-const version = 'v1';
+const version = 'v2';
 const FALLBACK_IMAGE_URL = './face.69232788.jpg';
 
 workbox.precaching.precache([
