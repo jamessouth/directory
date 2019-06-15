@@ -30,7 +30,12 @@ export default function Main(props) {
       {
         props.isLoaded && <div className={styles.h1_input} aria-hidden={props && !!props.modalEmployee}>
           <h1>awesome startup employee directory</h1>
-          <Input handleInputBlur={props.handleInputBlur} handleInputFocus={props.handleInputFocus} modalOpen={props && !!props.modalEmployee} filter={props.filter}/>
+          <Input
+            handleInputBlur={props.handleInputBlur}
+            handleInputFocus={props.handleInputFocus}
+            modalOpen={props && !!props.modalEmployee}
+            filter={props.filter}
+          />
           <Select modalOpen={props && !!props.modalEmployee} handleSort={props.handleSort}/>
         </div>
       }
@@ -39,8 +44,20 @@ export default function Main(props) {
         {props.employees
           .filter(e => e.isVisible)
           .map((e, i) =>
-          <Box inputInUse={props.inputInUse} focusBox={props.last || {key:'x'}} modalOpen={!!props.modalEmployee} handleModalOpen={props.handleModalOpen} key={e.key} boxkey={e.key} photo={e.photo} name={e.name} user={e.username} email={e.email} city={e.city}/>
-        )}
+            <Box
+              modalOpen={!!props.modalEmployee}
+              inputInUse={props.inputInUse}
+              focusBox={props.last || {key:'x'}}
+              handleModalOpen={props.handleModalOpen}
+              boxkey={e.key}
+              photo={e.photo}
+              name={e.name}
+              user={e.username}
+              email={e.email}
+              city={e.city}
+              key={e.key}
+            />
+          )}
         </ul>
       }
     </>

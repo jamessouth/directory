@@ -1,5 +1,5 @@
 const prefix = 'employee-directory';
-const version = 'v2';
+const version = 'v3';
 const FALLBACK_IMAGE_URL = './face.69232788.jpg';
 
 workbox.precaching.precache([
