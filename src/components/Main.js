@@ -4,12 +4,15 @@ import Input from './Input';
 import Select from './Select';
 import Modal from './Modal';
 import SWNotify from './SWNotify';
-import styles from '../styles/Main.module.css';
+import {overlay, h1_input} from '../styles/Main.module.css';
 
 export default function Main(props) {
   useEffect(() => {
     document.body.style.overflowY = !props ? 'visible' : !!props.modalEmployee ? 'hidden' : 'visible';
   });
+
+  // const [overlay, h1_input] = {styles};
+  console.log(overlay, h1_input);
 
   document.addEventListener('swUpdated', props.handleNewSW);
 
@@ -18,7 +21,7 @@ export default function Main(props) {
       {
         props.modalEmployee &&
         <>
-          <div className={styles.overlay} />
+          <div className={overlay} />
           <Modal
             handleModalPrev={props.handleModalPrev}
             handleModalNext={props.handleModalNext}
@@ -35,7 +38,7 @@ export default function Main(props) {
         />
       }
       {
-        props.isLoaded && <div className={styles.h1_input} aria-hidden={props && !!props.modalEmployee}>
+        props.isLoaded && <div className={h1_input} aria-hidden={props && !!props.modalEmployee}>
           <h1>awesome startup employee directory</h1>
           <Input
             handleInputBlur={props.handleInputBlur}

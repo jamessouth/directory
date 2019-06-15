@@ -22,7 +22,7 @@
   grid-column-end: 2;
   border-radius: 50%;
 }
-.name{
+.names{
   line-height: 24px;
   font-weight: 700;
   grid-column-end: 3;
@@ -31,9 +31,9 @@
   font-size: 21px;
   color: #404a51;
 }
-.user,
-.email,
-.city{
+.users,
+.emails,
+.citys{
   font-weight: 400;
   font-size: 17px;
   color: #555;
@@ -41,17 +41,17 @@
   grid-column-end: 3;
   justify-self: center;
 }
-.user{
+.users{
   grid-row-start: 8;
 }
-.email{
+.emails{
   grid-row-start: 9;
 }
-.city{
+.citys{
   grid-row-start: 7;
   text-transform: capitalize;
 }
-.email:hover{
+.emails:hover{
   text-decoration: underline;
   color: blue;
   cursor: pointer;

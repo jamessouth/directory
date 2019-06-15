@@ -1,5 +1,12 @@
 import React, { useEffect, useRef } from 'react';
-import styles from '../styles/Box.module.css';
+import {
+  li,
+  img,
+  names,
+  users,
+  citys,
+  emails
+} from '../styles/Box.module.css';
 
 export default function Box({
   modalOpen,
@@ -26,14 +33,14 @@ export default function Box({
       onKeyPress={handleModalOpen}
       onClick={handleModalOpen}
       data-key={boxkey}
-      className={styles.li}
+      className={li}
       tabIndex={modalOpen ? "-1" : "0"}
     >
-      <img className={styles.img} src={photo} alt="employee"/>
-      <p className={styles.name}>{name}</p>
-      <p className={styles.user}>{user}</p>
-      <p className={styles.email}>{email}</p>
-      <p className={styles.city}>{`${city}, USA`}</p>
+      <img className={img} src={photo} alt="employee"/>
+      <p className={names}>{name}</p>
+      <p className={users}>{user}</p>
+      <p className={emails}>{email}</p>
+      <p className={citys}>{`${city}, USA`}</p>
     </li>
   );
 }
