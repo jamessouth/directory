@@ -9,7 +9,7 @@ export default function Input({
   filter
 }) {
   const inPut = useRef(null);
-  let [inputText, updateInputText] = useState('');
+  const [inputText, setInputText] = useState('');
 
   useEffect(() => inPut.current.focus(), []);
 
@@ -23,7 +23,7 @@ export default function Input({
         role="searchbox"
         tabIndex={modalOpen ? "-1" : "0"}
         value={inputText}
-        onChange={handleChange(updateInputText, filter)}
+        onChange={handleChange(setInputText, filter)}
         id="search"
         type="search"
         name="search_box"

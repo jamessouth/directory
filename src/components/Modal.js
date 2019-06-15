@@ -4,34 +4,40 @@ import ModalMiddle from './ModalMiddle';
 import ModalBottom from './ModalBottom';
 import styles from '../styles/Modal.module.css';
 
-export default function Modal(props) {
+export default function Modal({
+  handleModalPrev,
+  handleModalNext,
+  handleModalClose,
+  emp,
+  sing
+}) {
   return (
-    <div aria-live="polite" onKeyUp={props.handleModalClose} className={styles.hidden}>
+    <div aria-live="polite" onKeyUp={handleModalClose} className={styles.hidden}>
 
       <ModalTop
-        handleModalPrev={props.handleModalPrev}
-        handleModalNext={props.handleModalNext}
-        handleModalClose={props.handleModalClose}
-        photo={props.emp.photo}
-        sing={props.sing}
+        handleModalPrev={handleModalPrev}
+        handleModalNext={handleModalNext}
+        handleModalClose={handleModalClose}
+        photo={emp.photo}
+        sing={sing}
       />
 
       <ModalMiddle
-        name={props.emp.name}
-        username={props.emp.username}
-        email={props.emp.email}
-        city={props.emp.city}
+        name={emp.name}
+        username={emp.username}
+        email={emp.email}
+        city={emp.city}
       />
 
       <ModalBottom
-        cell={props.emp.cell}
-        street={props.emp.street}
-        city={props.emp.city}
-        state={props.emp.state}
-        postcode={props.emp.postcode}
-        month={props.emp.month}
-        day={props.emp.day}
-        year={props.emp.year}
+        cell={emp.cell}
+        street={emp.street}
+        city={emp.city}
+        state={emp.state}
+        postcode={emp.postcode}
+        month={emp.month}
+        day={emp.day}
+        year={emp.year}
       />
 
     </div>

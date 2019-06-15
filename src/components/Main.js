@@ -19,13 +19,20 @@ export default function Main(props) {
         props.modalEmployee &&
         <>
           <div className={styles.overlay} />
-          <Modal handleModalPrev={props.handleModalPrev} handleModalNext={props.handleModalNext} handleModalClose={props.handleModalClose} emp={props.modalEmployee} sing={props.singlet}>
-          </Modal>
+          <Modal
+            handleModalPrev={props.handleModalPrev}
+            handleModalNext={props.handleModalNext}
+            handleModalClose={props.handleModalClose}
+            emp={props.modalEmployee}
+            sing={props.singlet}
+          />
         </>
       }
       {
         props.newSW &&
-        <SWNotify handleSWReload={props.handleSWReload}/>
+        <SWNotify
+          handleSWReload={props.handleSWReload}
+        />
       }
       {
         props.isLoaded && <div className={styles.h1_input} aria-hidden={props && !!props.modalEmployee}>
@@ -36,7 +43,10 @@ export default function Main(props) {
             modalOpen={props && !!props.modalEmployee}
             filter={props.filter}
           />
-          <Select modalOpen={props && !!props.modalEmployee} handleSort={props.handleSort}/>
+          <Select
+            modalOpen={props && !!props.modalEmployee}
+            handleSort={props.handleSort}
+          />
         </div>
       }
       {

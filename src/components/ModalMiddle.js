@@ -1,13 +1,18 @@
 import React from 'react';
 import styles from '../styles/ModalMiddle.module.css';
 
-export default function ModalMiddle(props) {
+export default function ModalMiddle({
+  name,
+  username,
+  email,
+  city
+}) {
   return (
     <div className={styles.middle}>
-      <p className={styles.name}>{props.name}</p>
-      <p className={styles.user}>{props.username}</p>
-      <p className={styles.email}>{props.email}</p>
-      <p className={styles.city}>{props.city}</p>
+      <p className={styles.name}>{name}</p>
+      <p className={styles.user}>{username}</p>
+      <p className={styles.email}>{email}</p>
+      <p className={styles.city}>{city}</p>
     </div>
   );
 }
