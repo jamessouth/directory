@@ -1,5 +1,8 @@
 import React from 'react';
-import styles from '../styles/ModalBottom.module.css';
+import {
+  bottom,
+  addy
+} from '../styles/ModalBottom.module.css';
 
 export default function ModalBottom({
   cell,
@@ -12,9 +15,9 @@ export default function ModalBottom({
   year
 }) {
   return (
-    <div className={styles.bottom}>
+    <div className={bottom}>
       <p>{cell}</p>
-      <p className={styles.addy}>{`${street}, ${city}, ${state}, USA ${postcode}`}</p>
+      <p className={addy}>{`${street}, ${city}, ${state}, USA ${postcode}`}</p>
       <p>{`Birthday: ${month}/${day}/${year}`}</p>
     </div>
   );

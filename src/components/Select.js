@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import handleChange from '../util/handleChange';
-import styles from '../styles/Select.module.css';
+import { div } from '../styles/Select.module.css';
 
 export default function Select({
   modalOpen,
@@ -9,7 +9,7 @@ export default function Select({
   const [selectValue, updateSelectValue] = useState('Select...');
 
   return(
-    <div className={styles.div}>
+    <div className={div}>
       <label htmlFor="sort">Sort by:</label>
       <select tabIndex={modalOpen ? "-1" : "0"} value={selectValue} onChange={handleChange(updateSelectValue, handleSort)} id="sort">
         <option hidden>Select...</option>

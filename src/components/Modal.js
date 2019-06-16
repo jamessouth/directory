@@ -2,42 +2,55 @@ import React from 'react';
 import ModalTop from './ModalTop';
 import ModalMiddle from './ModalMiddle';
 import ModalBottom from './ModalBottom';
-import styles from '../styles/Modal.module.css';
+import { hidden } from '../styles/Modal.module.css';
 
 export default function Modal({
   handleModalPrev,
   handleModalNext,
   handleModalClose,
-  emp,
+  emp : {
+    photo,
+    name,
+    username,
+    email,
+    city,
+    cell,
+    street,
+    state,
+    postcode,
+    month,
+    day,
+    year
+  },
   sing
 }) {
   return (
-    <div aria-live="polite" onKeyUp={handleModalClose} className={styles.hidden}>
+    <div aria-live="polite" onKeyUp={handleModalClose} className={hidden}>
 
       <ModalTop
         handleModalPrev={handleModalPrev}
         handleModalNext={handleModalNext}
         handleModalClose={handleModalClose}
-        photo={emp.photo}
+        photo={photo}
         sing={sing}
       />
 
       <ModalMiddle
-        name={emp.name}
-        username={emp.username}
-        email={emp.email}
-        city={emp.city}
+        name={name}
+        user={username}
+        email={email}
+        city={city}
       />
 
       <ModalBottom
-        cell={emp.cell}
-        street={emp.street}
-        city={emp.city}
-        state={emp.state}
-        postcode={emp.postcode}
-        month={emp.month}
-        day={emp.day}
-        year={emp.year}
+        cell={cell}
+        street={street}
+        city={city}
+        state={state}
+        postcode={postcode}
+        month={month}
+        day={day}
+        year={year}
       />
 
     </div>

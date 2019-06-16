@@ -8,16 +8,16 @@
 	padding-bottom: 1.5em;
 	border-bottom: 1px solid #dadada;
 }
-.name{
+.names{
 	line-height: 24px;
 	font-weight: 700;
 	margin-bottom: 0.25em;
 	color: #404a51;
 	font-size: 21px;
 }
-.user,
-.email,
-.city{
+.users,
+.emails,
+.citys{
   font-weight: 400;
   font-size: 17px;
   color: #555;
@@ -25,10 +25,10 @@
   grid-column-end: 3;
   justify-self: center;
 }
-.city{
+.citys{
   text-transform: capitalize;
 }
-.email:hover{
+.emails:hover{
 	text-decoration: underline;
 	color: blue;
 	cursor: pointer;

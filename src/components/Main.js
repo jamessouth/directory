@@ -4,15 +4,15 @@ import Input from './Input';
 import Select from './Select';
 import Modal from './Modal';
 import SWNotify from './SWNotify';
-import {overlay, h1_input} from '../styles/Main.module.css';
+import {
+  overlay,
+  h1_input
+} from '../styles/Main.module.css';
 
 export default function Main(props) {
   useEffect(() => {
     document.body.style.overflowY = !props ? 'visible' : !!props.modalEmployee ? 'hidden' : 'visible';
   });
-
-  // const [overlay, h1_input] = {styles};
-  console.log(overlay, h1_input);
 
   document.addEventListener('swUpdated', props.handleNewSW);
 
