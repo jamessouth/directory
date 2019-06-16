@@ -9,7 +9,7 @@ import {
 } from '../styles/Box.module.css';
 
 export default function Box({
-  modalOpen,
+  isModalOpen,
   inputInUse,
   focusBox,
   handleModalOpen,
@@ -22,7 +22,7 @@ export default function Box({
 }) {
   const boxLi = useRef(null);
   useEffect(() => {
-    if(!modalOpen && !inputInUse && boxLi.current.getAttribute('data-key') === focusBox.key){
+    if(!isModalOpen && !inputInUse && boxLi.current.getAttribute('data-key') === focusBox.key){
       boxLi.current.focus();
     }
   });
@@ -34,7 +34,7 @@ export default function Box({
       onClick={handleModalOpen}
       data-key={boxkey}
       className={li}
-      tabIndex={modalOpen ? "-1" : "0"}
+      tabIndex={isModalOpen ? "-1" : "0"}
     >
       <img className={img} src={photo} alt="employee"/>
       <p className={names}>{name}</p>

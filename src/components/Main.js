@@ -9,59 +9,77 @@ import {
   h1_input
 } from '../styles/Main.module.css';
 
-export default function Main(props) {
+export default function Main({
+  handleSort,
+  handleModalPrev,
+  handleInputFocus,
+  handleInputBlur,
+  handleNewSW,
+  handleSWReload,
+  handleModalNext,
+  handleModalClose,
+  handleModalOpen,
+  filter,
+  employees,
+  isLoaded,
+  modalEmployee,
+  singlet,
+  last,
+  inputInUse,
+  newSW
+}) {
   useEffect(() => {
-    document.body.style.overflowY = !props ? 'visible' : !!props.modalEmployee ? 'hidden' : 'visible';
+    document.body.style.overflowY = !!modalEmployee ? 'hidden' : 'visible';
   });
 
-  document.addEventListener('swUpdated', props.handleNewSW);
+  document.addEventListener('swUpdated', handleNewSW);
 
   return (
     <>
       {
-        props.modalEmployee &&
+        !!modalEmployee &&
         <>
           <div className={overlay} />
           <Modal
-            handleModalPrev={props.handleModalPrev}
-            handleModalNext={props.handleModalNext}
-            handleModalClose={props.handleModalClose}
-            emp={props.modalEmployee}
-            sing={props.singlet}
+            handleModalPrev={handleModalPrev}
+            handleModalNext={handleModalNext}
+            handleModalClose={handleModalClose}
+            emp={modalEmployee}
+            sing={singlet}
           />
         </>
       }
       {
-        props.newSW &&
+        !!newSW &&
         <SWNotify
-          handleSWReload={props.handleSWReload}
+          handleSWReload={handleSWReload}
         />
       }
       {
-        props.isLoaded && <div className={h1_input} aria-hidden={props && !!props.modalEmployee}>
+        isLoaded && <div className={h1_input} aria-hidden={!!modalEmployee}>
           <h1>awesome startup employee directory</h1>
           <Input
-            handleInputBlur={props.handleInputBlur}
-            handleInputFocus={props.handleInputFocus}
-            modalOpen={props && !!props.modalEmployee}
-            filter={props.filter}
+            handleInputBlur={handleInputBlur}
+            handleInputFocus={handleInputFocus}
+            isModalOpen={!!modalEmployee}
+            filter={filter}
           />
           <Select
-            modalOpen={props && !!props.modalEmployee}
-            handleSort={props.handleSort}
+            isModalOpen={!!modalEmployee}
+            handleSort={handleSort}
           />
         </div>
       }
       {
-        props.isLoaded && <ul aria-hidden={props && !!props.modalEmployee}>
-        {props.employees
+        isLoaded && <ul aria-hidden={!!modalEmployee}>
+        {employees
           .filter(e => e.isVisible)
           .map((e, i) =>
             <Box
-              modalOpen={!!props.modalEmployee}
-              inputInUse={props.inputInUse}
-              focusBox={props.last || {key:'x'}}
-              handleModalOpen={props.handleModalOpen}
+              isModalOpen={!!modalEmployee}
+              inputInUse={inputInUse}
+              focusBox={last || {key:'x'}}
+              handleModalOpen={handleModalOpen}
               boxkey={e.key}
               photo={e.photo}
               name={e.name}

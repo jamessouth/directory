@@ -5,7 +5,7 @@ import '../styles/Input.css';
 export default function Input({
   handleInputBlur,
   handleInputFocus,
-  modalOpen,
+  isModalOpen,
   filter
 }) {
   const inPut = useRef(null);
@@ -21,7 +21,7 @@ export default function Input({
         onBlur={handleInputBlur}
         onFocus={handleInputFocus}
         role="searchbox"
-        tabIndex={modalOpen ? "-1" : "0"}
+        tabIndex={isModalOpen ? "-1" : "0"}
         value={inputText}
         onChange={handleChange(setInputText, filter)}
         id="search"
