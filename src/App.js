@@ -4,6 +4,7 @@ import FetchError from './components/FetchError';
 import navigateEmployees from './util/navigateEmployees';
 import processPeople from './util/processPeople';
 import getPeople from './util/getPeople';
+import sortFunc from './util/sortFunc';
 
 export default function App() {
 
@@ -16,8 +17,6 @@ export default function App() {
   const [newSW, setNewSW] = useState(null);
   const [fetchError, setFetchError] = useState(null);
   const endpoint = 'https://randomuser.me/api/?results=12&nat=us&inc=name,location,email,login,dob,cell,picture&noinfo';
-  const RE1 = /^\w+/i;
-  const RE2 = /\w*-?'?\w+$/i;
 
   useEffect(() => {
     async function fetchData() {
@@ -54,15 +53,7 @@ export default function App() {
   }, [handleModalClose]);
 
   function sortEmployees(crit) {
-    let emps = employees.sort((a,b) => {
-      if (crit === 'first name') {
-        return a.name.match(RE1)[0] > b.name.match(RE1)[0] ? 1 : a.name.match(RE1)[0] < b.name.match(RE1)[0] ? -1 : a.name.match(RE2)[0] > b.name.match(RE2)[0] ? 1 : -1;
-      } else if (crit === 'last name') {
-        return a.name.match(RE2)[0] > b.name.match(RE2)[0] ? 1 : a.name.match(RE2)[0] < b.name.match(RE2)[0] ? -1 : a.name.match(RE1)[0] > b.name.match(RE1)[0] ? 1 : -1;
-      } else {
-        return a.city.toLowerCase() > b.city.toLowerCase() ? 1 : a.city.toLowerCase() < b.city.toLowerCase() ? -1 : a.name.match(RE1)[0] > b.name.match(RE1)[0] ? 1 : -1;
-      }
-    });
+    const emps = employees.sort(sortFunc(crit));
     setEmployees(emps.map((e,i) => {
       e.key = e.key.replace(/\d+$/, i);
       return e;
@@ -82,7 +73,7 @@ export default function App() {
   function handleModalOpen(e) {
     if(e.type === 'keypress' && (e.key !== ' ' && e.key !== 'Enter')) return;
     const ppl = document.querySelectorAll('li').length;
-    let index = e.currentTarget.getAttribute('data-key').match(/\d+$/)[0];
+    const index = e.currentTarget.getAttribute('data-key').match(/\d+$/)[0];
     setModalEmployee(employees[index]);
     setIsSinglet(ppl === 1 ? true : false);
   }
