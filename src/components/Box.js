@@ -10,7 +10,7 @@ import {
 
 export default function Box({
   isModalOpen,
-  inputInUse,
+  isInputInUse,
   focusBox,
   handleModalOpen,
   boxkey,
@@ -22,7 +22,7 @@ export default function Box({
 }) {
   const boxLi = useRef(null);
   useEffect(() => {
-    if(!isModalOpen && !inputInUse && boxLi.current.getAttribute('data-key') === focusBox.key){
+    if(!isModalOpen && !isInputInUse && boxLi.current.getAttribute('data-key') === focusBox.key){
       boxLi.current.focus();
     }
   });

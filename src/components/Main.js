@@ -23,9 +23,9 @@ export default function Main({
   employees,
   isLoaded,
   modalEmployee,
-  singlet,
+  isSinglet,
   last,
-  inputInUse,
+  isInputInUse,
   newSW
 }) {
   useEffect(() => {
@@ -45,7 +45,7 @@ export default function Main({
             handleModalNext={handleModalNext}
             handleModalClose={handleModalClose}
             emp={modalEmployee}
-            sing={singlet}
+            isSinglet={isSinglet}
           />
         </>
       }
@@ -77,7 +77,7 @@ export default function Main({
           .map((e, i) =>
             <Box
               isModalOpen={!!modalEmployee}
-              inputInUse={inputInUse}
+              isInputInUse={isInputInUse}
               focusBox={last || {key:'x'}}
               handleModalOpen={handleModalOpen}
               boxkey={e.key}

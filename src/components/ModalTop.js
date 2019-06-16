@@ -10,13 +10,13 @@ export default function ModalTop({
   handleModalNext,
   handleModalClose,
   photo,
-  sing
+  isSinglet
 }) {
   return (
     <>
       <button autoFocus aria-label="close" onClick={handleModalClose} className={close}>x</button>
       {
-        !sing && <ModalNav
+        !isSinglet && <ModalNav
           handleModalPrev={handleModalPrev}
           handleModalNext={handleModalNext}
         />

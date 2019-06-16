@@ -22,7 +22,7 @@ export default function Modal({
     day,
     year
   },
-  sing
+  isSinglet
 }) {
   return (
     <div aria-live="polite" onKeyUp={handleModalClose} className={hidden}>
@@ -32,7 +32,7 @@ export default function Modal({
         handleModalNext={handleModalNext}
         handleModalClose={handleModalClose}
         photo={photo}
-        sing={sing}
+        isSinglet={isSinglet}
       />
 
       <ModalMiddle
